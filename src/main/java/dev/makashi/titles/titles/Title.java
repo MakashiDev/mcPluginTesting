@@ -4,6 +4,7 @@ package dev.makashi.titles.titles;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -120,10 +121,17 @@ public final class Title extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onAvil(PrepareAnvilEvent e){
+    public void onAnvil(PrepareAnvilEvent e){
         ItemStack item = e.getResult();
         ItemMeta meta = item.getItemMeta();
+
+
         if (meta.getDisplayName().equals("Super Bow")){
+            e.getInventory().setRepairCost(25);
+            meta.addEnchant(Enchantment.ARROW_FIRE, 1, true);
+            meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+            meta.addEnchant(Enchantment.ARROW_DAMAGE, 5, true);
+            meta.addEnchant(Enchantment.ARROW_KNOCKBACK, 2, true);
             meta.setDisplayName("§x§f§f§0§0§0§0S§x§f§f§0§e§0§0u§x§f§f§1§c§0§0p§x§f§f§2§a§0§0e§x§f§f§3§8§0§0r §x§f§f§4§7§0§0B§x§f§f§5§5§0§0o§x§f§f§6§3§0§0w§x§f§f§7§1§0§0+§x§f§f§7§f§0§0+");
             item.setItemMeta(meta);
 
